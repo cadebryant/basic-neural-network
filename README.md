@@ -1,5 +1,5 @@
 # basic-neural-network
-A basic Neural Network machine learning application.
+A basic Neural Network machine learning application written in C# on the .NET 9 Platform.
 
 A neural network is an AI algorithm frequently used in prediction and classification problems (such as recognizing images).  Its structure is loosely based on the workings of biological neurons, particularly the way that they interact with and activate each other via synaptic connections and activation thresholds.  Essentially, it generates a function that attempts to describe the input data and iteratively updates that function until the input data matches the expected output data.
 
