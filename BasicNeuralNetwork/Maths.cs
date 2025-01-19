@@ -12,14 +12,7 @@ namespace BasicNeuralNetwork
 
         public static double ReLUDerivative(double x) => x > 0 ? 1 : 0;
 
-        public static double MeanSquaredError(double[] predicted, double[] actual)
-        {
-            double sum = 0;
-            for (int i = 0; i < predicted.Length; i++)
-            {
-                sum += Math.Pow(predicted[i] - actual[i], 2);
-            }
-            return sum / predicted.Length;
-        }
+        public static double MeanSquaredError(double[] predicted, double[] actual) 
+            => predicted.Zip(actual, (p, a) => Math.Pow(p - a, 2)).Average();
     }
 }
