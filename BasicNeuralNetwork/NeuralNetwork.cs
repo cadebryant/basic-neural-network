@@ -8,16 +8,16 @@ namespace BasicNeuralNetwork
 {
     public class NeuralNetwork
     {
-        private double[][] weights;
-        private double[] biases;
-        private double learningRate;
+        private readonly double[][] weights;
+        private readonly double[] biases;
+        private readonly double learningRate;
 
         public NeuralNetwork(int inputSize, int outputSize, double learningRate = 0.01)
         {
             this.learningRate = learningRate;
             weights = new double[outputSize][];
             biases = new double[outputSize];
-            Random rand = new Random();
+            var rand = new Random();
 
             for (int i = 0; i < outputSize; i++)
             {
@@ -32,12 +32,12 @@ namespace BasicNeuralNetwork
 
         public double[] Forward(double[] inputs)
         {
-            int outputSize = weights.Length;
-            double[] outputs = new double[outputSize];
+            var outputSize = weights.Length;
+            var outputs = new double[outputSize];
 
-            for (int i = 0; i < outputSize; i++)
+            for (var i = 0; i < outputSize; i++)
             {
-                double sum = 0;
+                var sum = 0d;
                 for (int j = 0; j < inputs.Length; j++)
                 {
                     sum += inputs[j] * weights[i][j];
@@ -51,19 +51,19 @@ namespace BasicNeuralNetwork
 
         public void Backpropagate(double[] inputs, double[] expectedOutputs)
         {
-            double[] outputs = Forward(inputs);
-            double[] errors = new double[outputs.Length];
-            double[] deltas = new double[outputs.Length];
+            var outputs = Forward(inputs);
+            var errors = new double[outputs.Length];
+            var deltas = new double[outputs.Length];
 
-            for (int i = 0; i < outputs.Length; i++)
+            for (var i = 0; i < outputs.Length; i++)
             {
                 errors[i] = outputs[i] - expectedOutputs[i];
                 deltas[i] = errors[i] * Maths.ReLUDerivative(outputs[i]);
             }
 
-            for (int i = 0; i < weights.Length; i++)
+            for (var i = 0; i < weights.Length; i++)
             {
-                for (int j = 0; j < weights[i].Length; j++)
+                for (var j = 0; j < weights[i].Length; j++)
                 {
                     weights[i][j] -= learningRate * deltas[i] * inputs[j];
                 }
